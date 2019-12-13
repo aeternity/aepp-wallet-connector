@@ -10,4 +10,11 @@ declare global {
       [elem: string]: any
     }
   }
+
+  interface Provider {
+    name: string,
+    isAvailable: (isDeveloperMode: boolean) => boolean,
+    icon: string,
+    initSdk: (stamps?: any, params?: object) => object,
+  }
 }
