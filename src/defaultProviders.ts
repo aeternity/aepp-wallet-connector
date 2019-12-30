@@ -47,7 +47,7 @@ export const baseAeppReverseIframe: Provider = {
 
 export const waelletIframe: Provider = {
   name: 'Waellet Iframe',
-  isAvailable: isDeveloperMode => isDeveloperMode || !IS_MOBILE_DEVICE,
+  isAvailable: isDeveloperMode => isDeveloperMode && !IS_MOBILE_DEVICE,
   icon: waelletIconPath,
   initSdk: async (stamps, params) => Aepp.compose(...stamps)({ ...params, parent: window.parent }),
 };
