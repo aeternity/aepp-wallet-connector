@@ -23,18 +23,21 @@ const chooseProviderOverlay = async (
     return link;
   });
 
-  return new Promise(r => new Vue({
-    render: h => h(Overlay, {
-      props: { providers: providersList, developerMode },
-      on: {
-        select(p: Provider): void {
-          document.getElementById('overlay')!.remove();
-          linkNodes.forEach(l => l.remove());
-          r(p);
+  return new Promise((resolve) => {
+    const vm = new Vue({
+      render: h => h(Overlay, {
+        props: { providers: providersList, developerMode },
+        on: {
+          select(p: Provider): void {
+            vm.$destroy();
+            document.getElementById('overlay')!.remove();
+            linkNodes.forEach(l => l.remove());
+            resolve(p);
+          },
         },
-      },
-    }),
-  }).$mount('#overlay'));
+      }),
+    }).$mount('#overlay');
+  });
 };
 
 export default async (
