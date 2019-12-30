@@ -60,7 +60,7 @@ export default stampit(AsyncInit, {
     const buildRequestUrl = (method, params) => {
       const url = new URL(`https://base.aepps.com/${method}`);
       params.forEach((p, i) => url.searchParams.set(`param${i}`, JSON.stringify(p)));
-      url.searchParams.set('callback', window.location.origin);
+      url.searchParams.set('callback', window.location.origin + window.location.pathname);
       return url;
     };
 
