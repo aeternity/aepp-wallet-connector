@@ -8,7 +8,7 @@ import * as R from 'ramda';
 
 let cachedAddress;
 
-const genProxyMethod = method => (...params) => {
+const genProxyMethod = method => function (...params) {
   if (method === 'address' && cachedAddress) return Promise.resolve(cachedAddress);
   return this.request(method, params);
 };
